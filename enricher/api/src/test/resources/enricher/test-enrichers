@@ -1,0 +1,5 @@
+# This is a comment
+
+
+!io.fabric8.build.enricher.api.EnricherFactoryTest$Test4
+io.fabric8.build.enricher.api.EnricherFactoryTest$Test5,200
