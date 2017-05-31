@@ -5,6 +5,10 @@
 language: java
 jdk:
   - oraclejdk8
+before_install:
+  - sudo apt-get install jq
+  - wget -O ~/codacy-coverage-reporter-assembly-latest.jar $(curl https://api.github.com/repos/codacy/codacy-coverage-reporter/releases/latest | jq -r .assets[0].browser_download_url)
+
 script:
   # Profile jacoco switches on jacoco coverages
   - mvn test -B -Pjacoco
@@ -12,6 +16,8 @@ script:
    # See https://docs.travis-ci.com/user/environment-variables/#Default-Environment-Variables
    # for more details about Travis default vars
   - if [ "$TRAVIS_BRANCH" = "master" -a "$TRAVIS_PULL_REQUEST" = "false" ]; then sh doc/ci-docs.sh; else true; fi
+after_success:
+  - java -cp ~/codacy-coverage-reporter-assembly-latest.jar com.codacy.CodacyCoverageReporter -l Java -r build/reports/jacoco/test/jacocoTestReport.xml
 after_script:
   # Update our sonar installation at https://sonarqube.com/dashboard?id=io.fabric8%3Afabric8-maven-plugin-build
   # - bash doc/sonarqube.sh
