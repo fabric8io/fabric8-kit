@@ -108,10 +108,10 @@
                 </goals>
                 <configuration>
                   <backend>pdf</backend>
-                  <imagesdir>${project.build.directory}/generated-docs/images</imagesdir>
                   <sourceHighlighter>rouge</sourceHighlighter>
                   <attributes>
                     <toc/>
+                    <imagesdir>${project.build.directory}/generated-docs/images</imagesdir>
                   </attributes>
                 </configuration>
               </execution>
