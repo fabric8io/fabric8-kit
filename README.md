@@ -15,6 +15,9 @@ One intention of extracting these parts from the originating plugins is also to 
 
 By moving out common parts it will be now also be possible for the [docker-maven-plugin](https://github.com/fabric8io/docker-maven-plugin) to benefit from the generator framework for zero-config creation of Docker images.
 
+
+<div style="text-align:center"><img src ="https://build.fabric8.io/images/fabric8-build-components.png" /></div>
+
 ### Roadmap
 
 * [x] Extract enricher framework from fabric8-maven-plugin
