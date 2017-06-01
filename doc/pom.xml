@@ -50,7 +50,6 @@
               <idprefix/>
               <idseparator>-</idseparator>
               <allow-uri-read>true</allow-uri-read>
-              <imagesdir>${project.build.directory}/generated-docs/images</imagesdir>
             </attributes>
           </configuration>
         </plugin>
@@ -109,6 +108,7 @@
                 </goals>
                 <configuration>
                   <backend>pdf</backend>
+                  <imagesdir>${project.build.directory}/generated-docs/images</imagesdir>
                   <sourceHighlighter>rouge</sourceHighlighter>
                   <attributes>
                     <toc/>
