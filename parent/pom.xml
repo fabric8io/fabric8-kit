@@ -306,13 +306,23 @@
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>1.5.3</version>
+          <version>1.5.5</version>
           <dependencies>
+            <dependency>
+              <groupId>org.jruby</groupId>
+              <artifactId>jruby-complete</artifactId>
+              <version>1.7.26</version>
+            </dependency>
             <dependency>
               <groupId>org.asciidoctor</groupId>
               <artifactId>asciidoctorj</artifactId>
-              <version>1.5.4</version>
+              <version>1.5.5</version>
             </dependency>
+             <dependency>
+               <groupId>org.asciidoctor</groupId>
+               <artifactId>asciidoctorj-diagram</artifactId>
+               <version>1.5.4</version>
+             </dependency>
           </dependencies>
         </plugin>
 
