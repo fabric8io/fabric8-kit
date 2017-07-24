@@ -66,15 +66,14 @@ public class GeneratorFactoryTest {
         }
 
         @Override
-        public boolean isApplicable(GeneratorContext<ProjectContext> context, List<ImageConfiguration> configs) {
+        public boolean isApplicable(Platform platform, GeneratorContext<ProjectContext> context, List<ImageConfiguration> configs) {
             return false;
         }
 
         @Override
-        public void generate(GeneratorContext<ProjectContext> context, List<ImageConfiguration> configs) {
+        public void generate(Platform platform, GeneratorContext<ProjectContext> context, List<ImageConfiguration> configs) {
 
         }
-
     }
 
 }

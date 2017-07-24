@@ -18,16 +18,20 @@ package io.fabric8.build.generator.api;
 
 import java.util.Map;
 
+import io.fabric8.build.common.BuildLogger;
+
 /**
  * @author nicola
  * @since 17.07.17
  */
 public class GeneratorContext<P extends ProjectContext> {
 
-    private P projectContext;
+    private final P projectContext;
 
     // Custom configuration for this generator
-    private Map<String, String> config;
+    private final Map<String, String> config;
+
+    private final BuildLogger logger;
 
     /**
      * Get the configuration for this specific generator
@@ -40,8 +44,13 @@ public class GeneratorContext<P extends ProjectContext> {
         return projectContext;
     }
 
-    GeneratorContext(P projectContext, Map<String, String> config) {
+    public BuildLogger getLogger() {
+        return logger;
+    }
+
+    GeneratorContext(P projectContext, Map<String, String> config, BuildLogger logger) {
         this.projectContext = projectContext;
         this.config = config;
+        this.logger = logger;
     }
 }

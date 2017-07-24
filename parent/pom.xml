@@ -123,6 +123,12 @@
 
       <dependency>
         <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-build-generator-generic</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
         <artifactId>fabric8-kit-enricher-api</artifactId>
         <version>${project.version}</version>
       </dependency>

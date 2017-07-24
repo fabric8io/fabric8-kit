@@ -16,6 +16,7 @@
 
 package io.fabric8.build.generator.api;
 
+import java.io.File;
 import java.util.Properties;
 
 import io.fabric8.build.common.BuildLogger;
@@ -28,19 +29,40 @@ import io.fabric8.build.common.BuildLogger;
 public class ProjectContext {
 
     // project props
-    private Properties properties;
+    private final Properties properties;
 
-    private BuildLogger logger;
+    private final BuildLogger logger;
 
-    private boolean prePackagePhase;
+    private final boolean prePackagePhase;
 
-    private FromSelector fromSelector;
+    private final FromSelector fromSelector;
 
-    public ProjectContext(Properties properties, BuildLogger logger, boolean prePackagePhase, FromSelector fromSelector) {
+    private final boolean snapshot;
+
+    private final File baseDirectory;
+
+    private final File buildDirectory;
+
+    private final File buildOutputDirectory;
+
+    private final String groupId;
+
+    private final String artifactId;
+
+    private final String version;
+
+    public ProjectContext(Properties properties, BuildLogger logger, boolean prePackagePhase, FromSelector fromSelector, boolean snapshot, File baseDirectory, File buildDirectory, File buildOutputDirectory, String groupId, String artifactId, String version) {
         this.properties = properties;
         this.logger = logger;
         this.prePackagePhase = prePackagePhase;
         this.fromSelector = fromSelector;
+        this.snapshot = snapshot;
+        this.baseDirectory = baseDirectory;
+        this.buildDirectory = buildDirectory;
+        this.buildOutputDirectory = buildOutputDirectory;
+        this.groupId = groupId;
+        this.artifactId = artifactId;
+        this.version = version;
     }
 
     /**
@@ -62,5 +84,33 @@ public class ProjectContext {
 
     public FromSelector getFromSelector() {
         return fromSelector;
+    }
+
+    public boolean isSnapshot() {
+        return snapshot;
+    }
+
+    public File getBaseDirectory() {
+        return baseDirectory;
+    }
+
+    public File getBuildDirectory() {
+        return buildDirectory;
+    }
+
+    public File getBuildOutputDirectory() {
+        return buildOutputDirectory;
+    }
+
+    public String getGroupId() {
+        return groupId;
+    }
+
+    public String getArtifactId() {
+        return artifactId;
+    }
+
+    public String getVersion() {
+        return version;
     }
 }

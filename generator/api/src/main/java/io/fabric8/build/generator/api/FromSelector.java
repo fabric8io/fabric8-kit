@@ -24,10 +24,12 @@ import java.util.Map;
  * @author nicola
  * @since 17/07/17
  */
-public interface FromSelector {
+public interface FromSelector<P extends ProjectContext> {
 
-    String getFrom();
+    String getFrom(Platform platform, GeneratorContext<P> context, String imageType);
 
-    Map<String, String> getImageStreamTagFromExt();
+    boolean useImageStreamTag(Platform platform, GeneratorContext<P> context, String imageType);
+
+    Map<String, String> getImageStreamTagFromExt(Platform platform, GeneratorContext<P> context, String imageType);
 
 }

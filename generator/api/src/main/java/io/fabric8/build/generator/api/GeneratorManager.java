@@ -47,14 +47,14 @@ public class GeneratorManager<P extends ProjectContext> {
     }
 
 
-    public List<ImageConfiguration> process(List<ImageConfiguration> imageConfigs) {
+    public List<ImageConfiguration> process(Platform platform, List<ImageConfiguration> imageConfigs) {
         log.verbose("Generators:");
         for (Generator<P> generator : generators) {
             log.verbose(" - %s", generator.getName());
             GeneratorContext<P> context = createGeneratorContext(generator);
-            if (generator.isApplicable(context, imageConfigs)) {
+            if (generator.isApplicable(platform, context, imageConfigs)) {
                 log.info("Running generator %s", generator.getName());
-                generator.generate(context, imageConfigs);
+                generator.generate(platform, context, imageConfigs);
             }
         }
         return imageConfigs;

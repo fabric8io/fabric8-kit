@@ -40,19 +40,21 @@ public interface Generator<P extends ProjectContext> {
      * in the build directory (e.g. below `target/`) as data cannot be available
      * when this method is called in a pre package phase.
      *
+     * @param platform the target platform
      * @param context the generator context
      * @param configs all configuration already available
      * @return true if the generator is applicable
      */
-    boolean isApplicable(GeneratorContext<P> context, List<ImageConfiguration> configs);
+    boolean isApplicable(Platform platform, GeneratorContext<P> context, List<ImageConfiguration> configs);
 
     /**
      * Provide additional image configurations.
      *
+     * @param platform the target platform
      * @param context the generator context
      * @param configs the already detected and resolved configuration
      */
-    void generate(GeneratorContext<P> context, List<ImageConfiguration> configs);
+    void generate(Platform platform, GeneratorContext<P> context, List<ImageConfiguration> configs);
 
 }
 

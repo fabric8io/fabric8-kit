@@ -90,7 +90,8 @@ public class GeneratorsConfig<P extends ProjectContext> {
      * @return context used during enrichment process.
      */
     public GeneratorContext<P> createGeneratorContext(P projectContext, String generatorName) {
-        return new GeneratorContext<P>(projectContext, getConfigMap(generatorName));
+        // TODO add prefix to the logger
+        return new GeneratorContext<>(projectContext, getConfigMap(generatorName), projectContext.getLogger());
     }
 
     /**
