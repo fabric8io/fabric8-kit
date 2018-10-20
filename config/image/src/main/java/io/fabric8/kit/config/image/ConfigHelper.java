@@ -19,7 +19,7 @@ package io.fabric8.kit.config.image;
 import java.util.*;
 
 import com.google.common.base.Joiner;
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import io.fabric8.kit.config.image.util.StringUtil;
 
 /**
@@ -42,7 +42,7 @@ public class ConfigHelper {
      * @param imageCustomizer final customization hook for mangling the configuration
      * @return a list of resolved and customized image configuration.
      */
-    public static List<ImageConfiguration> resolveImages(BuildLogger logger,
+    public static List<ImageConfiguration> resolveImages(KitLogger logger,
                                                          List<ImageConfiguration> images,
                                                          Resolver imageResolver,
                                                          String imageNameFilter,
@@ -72,7 +72,7 @@ public class ConfigHelper {
      * @return the minimal API Docker API required to be used for the given configuration.
      */
     public static String initAndValidate(List<ImageConfiguration> images, String apiVersion, NameFormatter nameFormatter,
-                                         BuildLogger log) {
+                                         KitLogger log) {
         // Init and validate configs. After this step, getResolvedImages() contains the valid configuration.
         for (ImageConfiguration imageConfiguration : images) {
             apiVersion = StringUtil.extractLargerVersion(apiVersion, imageConfiguration.initAndValidate(nameFormatter, log));

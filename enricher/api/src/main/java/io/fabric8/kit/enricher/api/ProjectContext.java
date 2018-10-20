@@ -2,7 +2,7 @@ package io.fabric8.kit.enricher.api;
 
 import java.util.Properties;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import io.fabric8.kit.config.resource.ResourceConfig;
 
 
@@ -15,7 +15,7 @@ public class ProjectContext {
     // project props
     private Properties properties;
 
-    private BuildLogger logger;
+    private KitLogger logger;
 
     private ResourceConfig resourceConfig;
 
@@ -28,7 +28,7 @@ public class ProjectContext {
         return properties;
     }
 
-    public BuildLogger getLogger() {
+    public KitLogger getLogger() {
         return logger;
     }
 
@@ -36,7 +36,7 @@ public class ProjectContext {
         return resourceConfig;
     }
 
-    public ProjectContext(Properties properties, ResourceConfig resourceConfig, BuildLogger logger) {
+    public ProjectContext(Properties properties, ResourceConfig resourceConfig, KitLogger logger) {
         this.properties = properties;
         this.logger = logger;
         this.resourceConfig = resourceConfig;

@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -103,7 +103,7 @@ public class ConfigHelperTest {
         };
     }
 
-    private class CatchingLog implements BuildLogger {
+    private class CatchingLog implements KitLogger {
         private String warnMessage;
 
         void reset() {

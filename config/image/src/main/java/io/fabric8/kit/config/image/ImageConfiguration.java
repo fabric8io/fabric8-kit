@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import io.fabric8.kit.config.image.util.DeepCopy;
 import io.fabric8.kit.config.image.util.StringUtil;
 
@@ -138,7 +138,7 @@ public class ImageConfiguration implements Resolvable, Serializable {
         return String.format("ImageConfiguration {name='%s', alias='%s'}", name, alias);
     }
 
-    public String initAndValidate(ConfigHelper.NameFormatter nameFormatter, BuildLogger log) {
+    public String initAndValidate(ConfigHelper.NameFormatter nameFormatter, KitLogger log) {
         name = nameFormatter.format(name);
         String minimalApiVersion = null;
         if (build != null) {

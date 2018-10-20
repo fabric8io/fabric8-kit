@@ -1,6 +1,6 @@
 package io.fabric8.kit.enricher.maven;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import io.fabric8.kit.config.resource.ResourceConfig;
 import io.fabric8.kit.enricher.api.ProjectContext;
 import org.apache.maven.project.MavenProject;
@@ -13,7 +13,7 @@ public class MavenProjectContext extends ProjectContext {
 
     private MavenProject project;
 
-    public MavenProjectContext(MavenProject project, ResourceConfig resourceConfig, BuildLogger logger) {
+    public MavenProjectContext(MavenProject project, ResourceConfig resourceConfig, KitLogger logger) {
         super(project.getProperties(), resourceConfig, logger);
     }
 

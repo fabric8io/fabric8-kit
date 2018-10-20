@@ -111,6 +111,24 @@
 
       <dependency>
         <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-kit-build-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-kit-build-maven</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-kit-build-docker</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
         <artifactId>fabric8-kit-generator-api</artifactId>
         <version>${project.version}</version>
       </dependency>

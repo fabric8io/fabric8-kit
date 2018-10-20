@@ -4,7 +4,7 @@ package io.fabric8.kit.common;
  * @author roland
  * @since 30.05.17
  */
-public interface BuildLogger {
+public interface KitLogger {
 
     /**
      * Debug message if debugging is enabled.

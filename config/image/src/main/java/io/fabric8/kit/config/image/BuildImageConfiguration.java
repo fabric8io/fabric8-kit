@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.Serializable;
 import java.util.*;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import io.fabric8.kit.config.image.util.DeepCopy;
 
 /**
@@ -401,7 +401,7 @@ public class BuildImageConfiguration implements Serializable {
         }
     }
 
-    public String initAndValidate(BuildLogger log) throws IllegalArgumentException {
+    public String initAndValidate(KitLogger log) throws IllegalArgumentException {
         if (entryPoint != null) {
             entryPoint.validate();
         }
@@ -440,7 +440,7 @@ public class BuildImageConfiguration implements Serializable {
     }
 
     // Initialize the dockerfile location and the build mode
-    private void initDockerFileFile(BuildLogger log) {
+    private void initDockerFileFile(KitLogger log) {
         // can't have dockerFile/dockerFileDir and dockerArchive
         if ((dockerFile != null || dockerFileDir != null) && dockerArchive != null) {
             throw new IllegalArgumentException("Both <dockerFile> (<dockerFileDir>) and <dockerArchive> are set. " +
@@ -453,7 +453,7 @@ public class BuildImageConfiguration implements Serializable {
         }
     }
 
-    private File findDockerFileFile(BuildLogger log) {
+    private File findDockerFileFile(KitLogger log) {
         if (dockerFile != null) {
             File dFile = new File(dockerFile);
             if (dockerFileDir == null) {

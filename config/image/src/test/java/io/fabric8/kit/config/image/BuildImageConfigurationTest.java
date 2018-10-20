@@ -18,7 +18,7 @@ package io.fabric8.kit.config.image;
 
 import java.io.File;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import mockit.Expectations;
 import mockit.Mocked;
 import mockit.integration.junit4.JMockit;
@@ -36,7 +36,7 @@ import static org.junit.Assert.*;
 public class BuildImageConfigurationTest {
 
     @Mocked
-    BuildLogger logger;
+    KitLogger logger;
 
     @Test
     public void empty() {
