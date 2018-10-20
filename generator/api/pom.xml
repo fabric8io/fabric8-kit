@@ -33,7 +33,7 @@
 
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-build-config-image</artifactId>
+      <artifactId>fabric8-kit-config-image</artifactId>
     </dependency>
 
     <dependency>

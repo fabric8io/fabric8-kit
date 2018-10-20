@@ -1,5 +1,5 @@
 # This is a comment
 
 
-!io.fabric8.build.generator.api.GeneratorFactoryTest$Test4
-io.fabric8.build.generator.api.GeneratorFactoryTest$Test5,200
+!io.fabric8.kit.generator.api.GeneratorFactoryTest$Test4
+io.fabric8.kit.generator.api.GeneratorFactoryTest$Test5,200

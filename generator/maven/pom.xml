@@ -33,7 +33,7 @@
 
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-build-generator-api</artifactId>
+      <artifactId>fabric8-kit-generator-api</artifactId>
     </dependency>
 
     <dependency>

@@ -1,5 +1,5 @@
-io.fabric8.build.generator.api.GeneratorFactoryTest$Test1,1000
-io.fabric8.build.generator.api.GeneratorFactoryTest$Test2
-io.fabric8.build.generator.api.GeneratorFactoryTest$Test5,200
-io.fabric8.build.generator.api.GeneratorFactoryTest$Test4
-io.fabric8.build.generator.api.GeneratorFactoryTest$Test3,5
+io.fabric8.kit.generator.api.GeneratorFactoryTest$Test1,1000
+io.fabric8.kit.generator.api.GeneratorFactoryTest$Test2
+io.fabric8.kit.generator.api.GeneratorFactoryTest$Test5,200
+io.fabric8.kit.generator.api.GeneratorFactoryTest$Test4
+io.fabric8.kit.generator.api.GeneratorFactoryTest$Test3,5

@@ -19,21 +19,21 @@
 
   <parent>
     <groupId>io.fabric8</groupId>
-    <artifactId>fabric8-build-parent</artifactId>
+    <artifactId>fabric8-kit-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>fabric8-build-generator-generic</artifactId>
+  <artifactId>fabric8-kit-generator-generic</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Fabric8 Build :: Generator :: Generic</name>
+  <name>Fabric8 Kit :: Generator :: Generic</name>
 
   <dependencies>
 
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-build-generator-api</artifactId>
+      <artifactId>fabric8-kit-generator-api</artifactId>
     </dependency>
 
   </dependencies>
