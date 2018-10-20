@@ -1,6 +1,6 @@
 @startuml
 ' tag::uml[]
-package "fabric8-build" {
+package "fabric8-kit" {
 
   package "Config" {
     [K8s Resource]

@@ -19,15 +19,15 @@
 
   <parent>
     <groupId>io.fabric8</groupId>
-    <artifactId>fabric8-build-parent</artifactId>
+    <artifactId>fabric8-kit-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <relativePath>../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>fabric8-build-common</artifactId>
+  <artifactId>fabric8-kit-common</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Fabric8 Build :: Common</name>
+  <name>Fabric8 Kit :: Common</name>
 
   <dependencies>
 

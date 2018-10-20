@@ -4,7 +4,7 @@ Roland Huß;
 :revdate: {localdate}
 :toc: macro
 :toclevels: 3
-:toc-title: fabric8-build
+:toc-title: fabric8-kit
 :doctype: book
 :icons: font
 

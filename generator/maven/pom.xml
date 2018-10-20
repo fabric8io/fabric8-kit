@@ -19,15 +19,15 @@
 
   <parent>
     <groupId>io.fabric8</groupId>
-    <artifactId>fabric8-build-parent</artifactId>
+    <artifactId>fabric8-kit-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>fabric8-build-generator-maven</artifactId>
+  <artifactId>fabric8-kit-generator-maven</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Fabric8 Build :: Generator :: Maven</name>
+  <name>Fabric8 Kit :: Generator :: Maven</name>
 
   <dependencies>
     <dependency>

@@ -18,14 +18,14 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>io.fabric8</groupId>
-  <artifactId>fabric8-build-parent</artifactId>
+  <artifactId>fabric8-kit-parent</artifactId>
   <version>0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Fabric8 Build :: Parent</name>
+  <name>Fabric8 Kit :: Parent</name>
   <description>${project.name}</description>
 
-  <url>http://github.com/fabric8io/fabric8-build-plugin</url>
+  <url>http://github.com/fabric8io/fabric8-kit-plugin</url>
 
   <licenses>
     <license>
@@ -45,8 +45,8 @@
   </developers>
 
   <scm>
-    <connection>scm:git:git://github.com/fabric8io/fabric8-build.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/fabric8io/fabric8-build.git</developerConnection>
+    <connection>scm:git:git://github.com/fabric8io/fabric8-kit.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/fabric8io/fabric8-kit.git</developerConnection>
     <tag>HEAD</tag>
     <url>git://github.com/fabric8io/fabric8-maven-plugin.git</url>
   </scm>
@@ -93,49 +93,49 @@
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-common</artifactId>
+        <artifactId>fabric8-kit-common</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-config-image</artifactId>
+        <artifactId>fabric8-kit-config-image</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-config-resource</artifactId>
+        <artifactId>fabric8-kit-config-resource</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-generator-api</artifactId>
+        <artifactId>fabric8-kit-generator-api</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-generator-maven</artifactId>
+        <artifactId>fabric8-kit-generator-maven</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-enricher-api</artifactId>
+        <artifactId>fabric8-kit-enricher-api</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-enricher-maven</artifactId>
+        <artifactId>fabric8-kit-enricher-maven</artifactId>
         <version>${project.version}</version>
       </dependency>
 
       <dependency>
         <groupId>io.fabric8</groupId>
-        <artifactId>fabric8-build-profile</artifactId>
+        <artifactId>fabric8-kit-profile</artifactId>
         <version>${project.version}</version>
       </dependency>
 
@@ -358,8 +358,8 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.1</version>
         <configuration>
-          <source>1.7</source>
-          <target>1.7</target>
+          <source>1.8</source>
+          <target>1.8</target>
           <compilerArgument>-Xlint:deprecation</compilerArgument>
         </configuration>
       </plugin>

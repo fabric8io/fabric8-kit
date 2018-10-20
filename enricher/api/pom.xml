@@ -19,26 +19,26 @@
 
   <parent>
     <groupId>io.fabric8</groupId>
-    <artifactId>fabric8-build-parent</artifactId>
+    <artifactId>fabric8-kit-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>fabric8-build-enricher-api</artifactId>
+  <artifactId>fabric8-kit-enricher-api</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Fabric8 Build :: Enricher :: API</name>
+  <name>Fabric8 Kit :: Enricher :: API</name>
 
   <dependencies>
 
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-build-common</artifactId>
+      <artifactId>fabric8-kit-common</artifactId>
     </dependency>
 
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-build-config-resource</artifactId>
+      <artifactId>fabric8-kit-config-resource</artifactId>
     </dependency>
 
     <dependency>

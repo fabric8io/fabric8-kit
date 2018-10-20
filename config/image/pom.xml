@@ -19,20 +19,20 @@
 
   <parent>
     <groupId>io.fabric8</groupId>
-    <artifactId>fabric8-build-parent</artifactId>
+    <artifactId>fabric8-kit-parent</artifactId>
     <version>0.1-SNAPSHOT</version>
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>fabric8-build-config-image</artifactId>
+  <artifactId>fabric8-kit-config-image</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Fabric8 Build :: Config :: Image</name>
+  <name>Fabric8 Kit :: Config :: Image</name>
 
   <dependencies>
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-build-common</artifactId>
+      <artifactId>fabric8-kit-common</artifactId>
     </dependency>
 
     <dependency>
