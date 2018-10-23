@@ -55,4 +55,41 @@ public interface KitLogger {
      * Whether verbose is enabled
      */
     boolean isVerboseEnabled();
+
+    class StdoutLogger implements KitLogger {
+        @Override
+        public void debug(String format, Object... params) {
+            System.out.println(String.format(format,params));
+        }
+
+        @Override
+        public void info(String format, Object... params) {
+            System.out.println(String.format(format,params));
+        }
+
+        @Override
+        public void verbose(String format, Object... params) {
+            System.out.println(String.format(format,params));
+        }
+
+        @Override
+        public void warn(String format, Object... params) {
+            System.out.println(String.format(format,params));
+        }
+
+        @Override
+        public void error(String format, Object... params) {
+            System.out.println(String.format(format,params));
+        }
+
+        @Override
+        public boolean isDebugEnabled() {
+            return true;
+        }
+
+        @Override
+        public boolean isVerboseEnabled() {
+            return true;
+        }
+    }
 }

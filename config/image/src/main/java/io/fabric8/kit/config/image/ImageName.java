@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
  *
  * <ul>
  *     <li>If the first part before the slash contains a "." or a ":" it is considered to be a registry URL</li>
- *     <li>A last part starting with with a ":" is considered to be a tag</li>
+ *     <li>A last part starting with a ":" is considered to be a tag</li>
  *     <li>The rest is considered the repository name (which might be separated via slashes)</li>
  * </ul>
  *
@@ -65,9 +65,7 @@ public class ImageName {
         if (!matcher.matches()) {
             throw new IllegalArgumentException(fullName + " is not a proper image name ([registry/][repo][:port]");
         }
-        tag = givenTag != null ?
-                givenTag :
-                matcher.groupCount() > 1 ? matcher.group(2) : null;
+        tag = givenTag != null ? givenTag : matcher.group(2);
         String rest = matcher.group(1);
 
         String[] parts = rest.split("\\s*/\\s*");
@@ -237,7 +235,7 @@ public class ImageName {
             StringBuilder buf = new StringBuilder();
             buf.append(String.format("Given Docker name '%s' is invalid:\n", getFullName()));
             for (String error : errors) {
-                buf.append(String.format("   * %s\n",error));
+                buf.append(String.format("   * %s\n", error));
             }
             buf.append("See http://bit.ly/docker_image_fmt for more details");
             throw new IllegalArgumentException(buf.toString());

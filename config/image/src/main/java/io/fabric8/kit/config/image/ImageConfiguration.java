@@ -4,126 +4,41 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
-import io.fabric8.kit.common.KitLogger;
-import io.fabric8.kit.config.image.util.DeepCopy;
-import io.fabric8.kit.config.image.util.StringUtil;
+import io.fabric8.kit.config.image.build.BuildConfiguration;
+import org.apache.commons.lang3.SerializationUtils;
 
 /**
  * @author roland
  * @since 02.09.14
  */
-public class ImageConfiguration implements Resolvable, Serializable {
+public class ImageConfiguration implements Serializable {
 
     private String name;
 
     private String alias;
 
-    private RunImageConfiguration run;
-
-    private BuildImageConfiguration build;
-
-    private WatchImageConfiguration watch;
-
-    private Map<String, String> external;
-
     private String registry;
 
-    // Used for injection
-    public ImageConfiguration() {
-    }
+    private BuildConfiguration build;
 
-    @Override
+    // Used for injection
+    public ImageConfiguration() {}
+
     public String getName() {
         return name;
     }
 
-    /**
-     * Change the name which can be useful in long running runs e.g. for updating
-     * images when doing updates. Use with caution and only for those circumstances.
-     *
-     * @param name image name to set.
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
 
-    @Override
     public String getAlias() {
         return alias;
     }
 
-    public RunImageConfiguration getRunConfiguration() {
-        return (run == null) ? RunImageConfiguration.DEFAULT : run;
-    }
-
-    public BuildImageConfiguration getBuildConfiguration() {
+    public BuildConfiguration getBuildConfiguration() {
         return build;
     }
 
-    public WatchImageConfiguration getWatchConfiguration() {
-        return watch;
-    }
-
-    public Map<String, String> getExternalConfig() {
-        return external;
-    }
-
-    @Override
-    public List<String> getDependencies() {
-        RunImageConfiguration runConfig = getRunConfiguration();
-        List<String> ret = new ArrayList<>();
-        if (runConfig != null) {
-            addVolumes(runConfig, ret);
-            addLinks(runConfig, ret);
-            addContainerNetwork(runConfig, ret);
-            addDependsOn(runConfig, ret);
-        }
-        return ret;
-    }
-
-    private void addVolumes(RunImageConfiguration runConfig, List<String> ret) {
-        RunVolumeConfiguration volConfig = runConfig.getVolumeConfiguration();
-        if (volConfig != null) {
-            List<String> volumeImages = volConfig.getFrom();
-            if (volumeImages != null) {
-                ret.addAll(volumeImages);
-            }
-        }
-    }
-
-    private void addLinks(RunImageConfiguration runConfig, List<String> ret) {
-        // Custom networks can have circular links, no need to be considered for the starting order.
-        if (runConfig.getLinks() != null && !runConfig.getNetworkingConfig().isCustomNetwork()) {
-            for (String[] link : StringUtil.splitOnLastColon(runConfig.getLinks())) {
-                ret.add(link[0]);
-            }
-        }
-    }
-
-    private void addContainerNetwork(RunImageConfiguration runConfig, List<String> ret) {
-        NetworkConfig config = runConfig.getNetworkingConfig();
-        String alias = config.getContainerAlias();
-        if (alias != null) {
-            ret.add(alias);
-        }
-    }
-
-    private void addDependsOn(RunImageConfiguration runConfig, List<String> ret) {
-        // Only used in custom networks.
-        if (runConfig.getDependsOn() != null && runConfig.getNetworkingConfig().isCustomNetwork()) {
-            for (String link : runConfig.getDependsOn()) {
-                ret.add(link);
-            }
-        }
-    }
-
-    public boolean isDataImage() {
-        // If there is no explicit run configuration, its a data image
-        // TODO: Probably add an explicit property so that a user can indicated whether it
-        // is a data image or not on its own.
-        return getRunConfiguration() == null;
-    }
 
     public String getDescription() {
         return String.format("[%s] %s", new ImageName(name).getFullName(), (alias != null ? "\"" + alias + "\"" : "")).trim();
@@ -138,34 +53,30 @@ public class ImageConfiguration implements Resolvable, Serializable {
         return String.format("ImageConfiguration {name='%s', alias='%s'}", name, alias);
     }
 
-    public String initAndValidate(ConfigHelper.NameFormatter nameFormatter, KitLogger log) {
+    public String[] validate(NameFormatter nameFormatter) {
         name = nameFormatter.format(name);
-        String minimalApiVersion = null;
+        List<String> apiVersions = new ArrayList<>();
         if (build != null) {
-            minimalApiVersion = build.initAndValidate(log);
+            apiVersions.add(build.validate());
         }
-        if (run != null) {
-            minimalApiVersion = StringUtil.extractLargerVersion(minimalApiVersion, run.initAndValidate());
-        }
-        return minimalApiVersion;
+        return apiVersions.stream().filter(Objects::nonNull).toArray(String[]::new);
     }
 
     // =========================================================================
     // Builder for image configurations
 
     public static class Builder {
-        private final ImageConfiguration config;
+        protected ImageConfiguration config;
 
-        public Builder() {
+        public Builder()  {
             this(null);
         }
-
 
         public Builder(ImageConfiguration that) {
             if (that == null) {
                 this.config = new ImageConfiguration();
             } else {
-                this.config = DeepCopy.copy(that);
+                this.config = SerializationUtils.clone(that);
             }
         }
 
@@ -179,28 +90,28 @@ public class ImageConfiguration implements Resolvable, Serializable {
             return this;
         }
 
-        public Builder runConfig(RunImageConfiguration runConfig) {
-            config.run = runConfig;
-            return this;
-        }
-
-        public Builder buildConfig(BuildImageConfiguration buildConfig) {
+        public Builder buildConfig(BuildConfiguration buildConfig) {
             config.build = buildConfig;
             return this;
         }
 
-        public Builder externalConfig(Map<String, String> externalConfig) {
-            config.external = externalConfig;
+        public Builder registry(String registry) {
+            config.registry = registry;
             return this;
         }
 
         public ImageConfiguration build() {
             return config;
         }
+    }
 
-        public Builder watchConfig(WatchImageConfiguration watchConfig) {
-            config.watch = watchConfig;
-            return this;
-        }
+    // =====================================================================
+    /**
+     * Format an image name by replacing certain placeholders
+     */
+    public interface NameFormatter {
+        String format(String name);
+
+        NameFormatter IDENTITY = name -> name;
     }
 }
