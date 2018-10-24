@@ -52,9 +52,34 @@ public interface KitLogger {
     boolean isDebugEnabled();
 
     /**
+     * Whether debugging is enabled.
+     */
+    boolean isInfoEnabled();
+
+    /**
      * Whether verbose is enabled
      */
     boolean isVerboseEnabled();
+
+        /**
+     * Start a progress bar* @param total the total number to be expected
+     */
+    void progressStart();
+
+    /**
+     * Update the progress
+     *
+     * @param layerId the image id of the layer fetched
+     * @param status a status message
+     * @param progressMessage the progressBar
+     */
+    void progressUpdate(String layerId, String status, String progressMessage);
+
+    /**
+     * Finis progress meter. Must be always called if {@link #progressStart()} has been
+     * used.
+     */
+    void progressFinished();
 
     class StdoutLogger implements KitLogger {
         @Override
@@ -91,5 +116,19 @@ public interface KitLogger {
         public boolean isVerboseEnabled() {
             return true;
         }
+
+        @Override
+        public boolean isInfoEnabled() {
+            return true;
+        }
+
+        @Override
+        public void progressStart() { }
+
+        @Override
+        public void progressUpdate(String id, String status, String progressMessage) { }
+
+        @Override
+        public void progressFinished() { }
     }
 }
