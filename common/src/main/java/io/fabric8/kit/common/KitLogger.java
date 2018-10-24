@@ -28,7 +28,11 @@ public interface KitLogger {
      * @param format verbose message format
      * @param params parameter for formatting message
      */
-    void verbose(String format, Object... params);
+    default void verbose(String format, Object... params) {
+        if (isVerboseEnabled()) {
+            info(format, params);
+        }
+    }
 
     /**
      * A warning.
@@ -59,12 +63,18 @@ public interface KitLogger {
     /**
      * Whether verbose is enabled
      */
-    boolean isVerboseEnabled();
+    default boolean isVerboseEnabled() {
+        return false;
+    }
 
-        /**
+
+    // ================================================================================
+    // Progress handling, by default disabled
+
+    /**
      * Start a progress bar* @param total the total number to be expected
      */
-    void progressStart();
+    default void progressStart() {}
 
     /**
      * Update the progress
@@ -73,13 +83,13 @@ public interface KitLogger {
      * @param status a status message
      * @param progressMessage the progressBar
      */
-    void progressUpdate(String layerId, String status, String progressMessage);
+    default void progressUpdate(String layerId, String status, String progressMessage) {}
 
     /**
      * Finis progress meter. Must be always called if {@link #progressStart()} has been
      * used.
      */
-    void progressFinished();
+    default void progressFinished() {}
 
     class StdoutLogger implements KitLogger {
         @Override
@@ -89,11 +99,6 @@ public interface KitLogger {
 
         @Override
         public void info(String format, Object... params) {
-            System.out.println(String.format(format,params));
-        }
-
-        @Override
-        public void verbose(String format, Object... params) {
             System.out.println(String.format(format,params));
         }
 
@@ -113,22 +118,8 @@ public interface KitLogger {
         }
 
         @Override
-        public boolean isVerboseEnabled() {
-            return true;
-        }
-
-        @Override
         public boolean isInfoEnabled() {
             return true;
         }
-
-        @Override
-        public void progressStart() { }
-
-        @Override
-        public void progressUpdate(String id, String status, String progressMessage) { }
-
-        @Override
-        public void progressFinished() { }
     }
 }

@@ -34,6 +34,7 @@ public class AnsiLoggerFacade implements KitLogger {
     private final KitLogger log;
     private final String prefix;
     private final boolean batchMode;
+    private boolean verbose;
 
     // ANSI escapes for various colors (or empty strings if no coloring is used)
     static Ansi.Color
@@ -53,17 +54,18 @@ public class AnsiLoggerFacade implements KitLogger {
     // Whether to use ANSI codes
     private boolean useAnsi;
 
-    public AnsiLoggerFacade(KitLogger log, boolean useColor) {
-        this(log, useColor, false);
+    public AnsiLoggerFacade(KitLogger log, boolean useColor, boolean verbose) {
+        this(log, useColor, verbose, false);
     }
 
-    public AnsiLoggerFacade(KitLogger log, boolean useColor, boolean batchMode) {
-        this(log, useColor, batchMode, DEFAULT_LOG_PREFIX);
+    public AnsiLoggerFacade(KitLogger log, boolean useColor, boolean verbose, boolean batchMode) {
+        this(log, useColor, verbose, batchMode, DEFAULT_LOG_PREFIX);
     }
 
-    public AnsiLoggerFacade(KitLogger log, boolean useColor, boolean batchMode, String prefix) {
+    public AnsiLoggerFacade(KitLogger log, boolean useColor, boolean verbose, boolean batchMode, String prefix) {
         this.log = log;
         this.prefix = prefix;
+        this.verbose = verbose;
         this.batchMode = batchMode;
         initializeColor(useColor);
     }
@@ -81,8 +83,10 @@ public class AnsiLoggerFacade implements KitLogger {
     }
 
     /** {@inheritDoc} */
-    public void verbose(String message, Object... params) {
-        log.verbose(ansi().fgBright(BLACK).a(prefix).a(format(message, params)).reset().toString());
+    public void verbose(String message, Object ... params) {
+        if (verbose) {
+            log.info(ansi().fgBright(BLACK).a(prefix).a(format(message, params)).reset().toString());
+        }
     }
 
     /** {@inheritDoc} */
@@ -102,7 +106,7 @@ public class AnsiLoggerFacade implements KitLogger {
         return log.isDebugEnabled();
     }
 
-        /**
+    /**
      * Whether debugging is enabled.
      */
     public boolean isInfoEnabled() {
@@ -110,7 +114,7 @@ public class AnsiLoggerFacade implements KitLogger {
     }
 
     public boolean isVerboseEnabled() {
-        return log.isVerboseEnabled();
+        return verbose;
     }
 
     /**
@@ -121,7 +125,7 @@ public class AnsiLoggerFacade implements KitLogger {
         if (!batchMode && log.isInfoEnabled()) {
             imageLines.remove();
             updateCount.remove();
-            imageLines.set(new HashMap<String, Integer>());
+            imageLines.set(new HashMap<>());
             updateCount.set(new AtomicInteger());
         }
     }

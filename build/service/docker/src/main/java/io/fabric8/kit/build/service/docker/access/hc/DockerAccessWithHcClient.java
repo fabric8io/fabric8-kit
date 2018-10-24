@@ -115,7 +115,6 @@ public class DockerAccessWithHcClient implements DockerAccess {
         }
     }
 
-
     @Override
     public void buildImage(String image, File dockerArchive, BuildOptions options) throws DockerAccessException {
         try {
@@ -125,7 +124,6 @@ public class DockerAccessWithHcClient implements DockerAccess {
             throw new DockerAccessException(e, "Unable to build image [%s]", image);
         }
     }
-
 
     @Override
     public boolean hasImage(String name) throws DockerAccessException {

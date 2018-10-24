@@ -30,7 +30,7 @@ public class AnsiLoggerFacadeTest {
     @Test
     public void emphasize() {
         TestLog testLog = new TestLog();
-        AnsiLoggerFacade logger = new AnsiLoggerFacade(testLog, true, false, "T>");
+        AnsiLoggerFacade logger = new AnsiLoggerFacade(testLog, true, false, false, "T>");
         Ansi ansi = Ansi.ansi();
         logger.info("Yet another [[*]]Test[[*]] %s","emphasis");
         assertEquals(ansi.a("T>")
