@@ -54,9 +54,10 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <version.maven>3.3.1</version.maven>
-    <version.kubernetes-client>2.3.1</version.kubernetes-client>
+    <version.maven>3.5.4</version.maven>
+    <version.kubernetes-client>4.1.0</version.kubernetes-client>
     <version.openshift-client>${version.kubernetes-client}</version.openshift-client>
+    <version.jmockit>1.43</version.jmockit>
   </properties>
 
   <repositories>
@@ -111,6 +112,24 @@
 
       <dependency>
         <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-kit-build-api</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-kit-build-maven</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
+        <artifactId>fabric8-kit-build-docker</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>io.fabric8</groupId>
         <artifactId>fabric8-kit-generator-api</artifactId>
         <version>${project.version}</version>
       </dependency>
@@ -157,34 +176,77 @@
       <!-- == libs ====================================== -->
 
       <dependency>
-        <groupId>com.fasterxml.jackson.dataformat</groupId>
-        <artifactId>jackson-dataformat-yaml</artifactId>
-        <version>2.8.7</version>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-lang3</artifactId>
+        <version>3.8.1</version>
+      </dependency>
+
+      <dependency>
+        <groupId>commons-io</groupId>
+        <artifactId>commons-io</artifactId>
+        <version>2.6</version>
       </dependency>
 
       <dependency>
         <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.5</version>
+        <artifactId>commons-compress</artifactId>
+        <version>1.17</version>
       </dependency>
 
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
-        <version>21.0</version>
+        <version>27.0-jre</version>
       </dependency>
 
       <dependency>
-        <groupId>com.thoughtworks.xstream</groupId>
-        <artifactId>xstream</artifactId>
-        <version>1.4.10</version>
+        <groupId>com.google.code.gson</groupId>
+        <artifactId>gson</artifactId>
+        <version>2.8.5</version>
       </dependency>
+
+      <dependency>
+        <groupId>org.yaml</groupId>
+        <artifactId>snakeyaml</artifactId>
+        <version>1.18</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+        <version>4.5.6</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.github.jnr</groupId>
+        <artifactId>jnr-unixsocket</artifactId>
+        <version>0.12</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.bouncycastle</groupId>
+        <artifactId>bcpkix-jdk15on</artifactId>
+        <version>1.57</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.fusesource.jansi</groupId>
+        <artifactId>jansi</artifactId>
+        <version>1.16</version>
+      </dependency>
+
       <!-- == maven ===================================== -->
 
       <dependency>
         <groupId>org.apache.maven</groupId>
         <artifactId>maven-core</artifactId>
         <version>${version.maven}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <version>3.1.0</version>
       </dependency>
 
       <!-- == test ====================================== -->
@@ -213,7 +275,7 @@
       <dependency>
         <groupId>org.jmockit</groupId>
         <artifactId>jmockit</artifactId>
-        <version>1.24</version>
+        <version>${version.jmockit}</version>
         <scope>test</scope>
       </dependency>
 
@@ -342,6 +404,11 @@
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.19.1</version>
+          <configuration>
+            <argLine>
+              -javaagent:${settings.localRepository}/org/jmockit/jmockit/${version.jmockit}/jmockit-${version.jmockit}.jar
+            </argLine>
+          </configuration>
         </plugin>
 
         <plugin>

@@ -2,7 +2,8 @@ package io.fabric8.kit.config.image;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class ImageNameTest {
 
@@ -149,8 +150,8 @@ public class ImageNameTest {
         for (String i : illegal) {
             try {
                 new ImageName(i);
-                fail(String.format("Name '%s' should fail",i));
-            } catch (IllegalArgumentException exp) {}
+                fail(String.format("Name '%s' should fail", i));
+            } catch (IllegalArgumentException exp) { /* expected */};
         }
 
         String[] legal = {

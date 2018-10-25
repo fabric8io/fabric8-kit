@@ -3,7 +3,7 @@ package io.fabric8.kit.enricher.api;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.fabric8.kit.common.BuildLogger;
+import io.fabric8.kit.common.KitLogger;
 import io.fabric8.kubernetes.api.builder.Function;
 import io.fabric8.kubernetes.api.model.HasMetadata;
 import io.fabric8.kubernetes.api.model.KubernetesListBuilder;
@@ -17,7 +17,7 @@ public class EnricherManager<P extends ProjectContext> {
     private final List<Enricher<P>> enrichers;
     private final P projectContext;
     private final EnrichersConfig<P> enrichersConfig;
-    private final BuildLogger log;
+    private final KitLogger log;
 
     public EnricherManager(P projectContext,
                            EnrichersConfig<P> enrichersConfig,
