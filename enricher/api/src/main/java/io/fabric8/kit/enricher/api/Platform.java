@@ -11,15 +11,15 @@ import java.util.Set;
 public enum Platform {
 
     KUBERNETES(
-        "DeploymentConfig",
-        "Project",
-        "Route"
-    ),
-
-    OPENSHIFT(
         "Deployment",
         "Namespace",
         "Ingress"
+    ),
+
+    OPENSHIFT(
+        "DeploymentConfig",
+        "Project",
+        "Route"
     );
 
     private final Set<String> unsupportedResources;
