@@ -24,31 +24,16 @@
     <relativePath>../../parent/pom.xml</relativePath>
   </parent>
 
-  <artifactId>fabric8-kit-generator-api</artifactId>
+  <artifactId>fabric8-kit-generator-generic</artifactId>
   <version>0.1-SNAPSHOT</version>
 
-  <name>Fabric8 Kit :: Generator :: API</name>
+  <name>Fabric8 Kit :: Generator :: Generic</name>
 
   <dependencies>
 
     <dependency>
       <groupId>io.fabric8</groupId>
-      <artifactId>fabric8-kit-config-image</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>org.jmockit</groupId>
-      <artifactId>jmockit</artifactId>
-    </dependency>
-
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <artifactId>fabric8-kit-generator-api</artifactId>
     </dependency>
 
   </dependencies>

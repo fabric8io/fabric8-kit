@@ -40,8 +40,11 @@
     <module>config/resource</module>
     <module>enricher/api</module>
     <module>enricher/maven</module>
+
     <module>generator/api</module>
     <module>generator/maven</module>
+    <module>generator/generic</module>
+
     <module>profile</module>
   </modules>
 
